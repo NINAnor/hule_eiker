@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2023.3.16)  19 APR 2023 15:10
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2023.3.16)  3 MAY 2023 15:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -534,274 +534,319 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 \openout5 = `loc_selection.toc'.
 
 
-Package xcolor Warning: Incompatible color definition on input line 171.
+Package xcolor Warning: Incompatible color definition on input line 174.
 
 
-Package xcolor Warning: Incompatible color definition on input line 175.
+Package xcolor Warning: Incompatible color definition on input line 178.
 
 
-Package xcolor Warning: Incompatible color definition on input line 175.
+Package xcolor Warning: Incompatible color definition on input line 178.
+
+
+Package xcolor Warning: Incompatible color definition on input line 180.
+
+
+Package xcolor Warning: Incompatible color definition on input line 184.
+
+
+Package xcolor Warning: Incompatible color definition on input line 184.
 
 [1
 
 ]
-
-Package xcolor Warning: Incompatible color definition on input line 224.
-
-
-Package xcolor Warning: Incompatible color definition on input line 231.
-
-
-Package xcolor Warning: Incompatible color definition on input line 231.
+Overfull \hbox (23.5pt too wide) in paragraph at lines 255--259
+[]\TU/lmr/m/n/10 Discard squares with total number of trees <2 & distance_to_ne
+arest_neighbor
+ []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 254--254
+Package xcolor Warning: Incompatible color definition on input line 265.
+
+
+Package xcolor Warning: Incompatible color definition on input line 272.
+
+
+Package xcolor Warning: Incompatible color definition on input line 272.
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##    row_number RuteID RuteJA TreID Antall Verdi Omkrets Syn
 lig_~1 Hulhe~2 Hulhe~3[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 254--254
+Overfull \hbox (80.25pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##         <dbl>  <dbl> <chr>  <chr>  <dbl> <chr> <chr>   <ch
 r>     <chr>   <chr>[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 254--254
+Overfull \hbox (59.25pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##  1          1      7 Nei    7_01       1 A     332     JA 
        1615    2[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 254--254
+Overfull \hbox (75.0pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##  2          2     23 Nei    23_1       1 C     225     NEI
        <NA>    <NA>[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 254--254
+Overfull \hbox (75.0pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##  3          3     23 Nei    23_2       1 C     205     NEI
        <NA>    <NA>[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 254--254
+Overfull \hbox (59.25pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##  4          4     24 Nei    24_10      1 B     300     JA 
        <NA>    2[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 254--254
+Overfull \hbox (59.25pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##  5          5     24 Nei    24_2       1 B     237     JA 
        100     2[] 
  []
 
-
-Overfull \hbox (75.0pt too wide) in paragraph at lines 254--254
+[2]
+Overfull \hbox (75.0pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##  6          6     24 Nei    24_3       1 C     230     NEI
        <NA>    <NA>[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 254--254
+Overfull \hbox (75.0pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##  7          7     24 Nei    24_4       1 C     222     NEI
        <NA>    <NA>[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 254--254
+Overfull \hbox (75.0pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##  8          8     24 Nei    24_5       1 C     216     NEI
        <NA>    <NA>[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 254--254
+Overfull \hbox (59.25pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ##  9          9     24 Nei    24_6       1 B     245     JA 
        2750    2[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 254--254
+Overfull \hbox (75.0pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ## 10         10     24 Nei    24_7       1 B     320     NEI
        <NA>    <NA>[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 254--254
+Overfull \hbox (59.25pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ## # ... with 647 more rows, 37 more variables: Vedmuld <chr>
 , Treform <chr>,[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 254--254
+Overfull \hbox (54.0pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ## #   Barktype <chr>, Mosedekning <chr>, Vitalitet <dbl>, Ku
 lturspor <chr>,[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 254--254
+Overfull \hbox (22.5pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ## #   Omgivelser <chr>, Renskog <chr>, Mestskog <chr>, Noesk
 og <chr>,[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 254--254
+Overfull \hbox (75.0pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ## #   PlasseringAR5 <chr>, Forskrift_gammel <dbl>, Forskrift
  <dbl>, Vern <chr>,[] 
  []
 
 
-Overfull \hbox (6.75pt too wide) in paragraph at lines 254--254
+Overfull \hbox (6.75pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ## #   Gjenvoksing <dbl>, Gjenvoksing2 <dbl>, Skjøtselsbehov 
 <chr>,[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 254--254
+Overfull \hbox (27.75pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ## #   UTM32_X_koordinat <dbl>, UTM32_Y_koordinat <dbl>, Komm
 une <dbl>,[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 254--254
+Overfull \hbox (75.0pt too wide) in paragraph at lines 295--295
 []\TU/lmtt/m/n/10 ## #   Områdenavn <chr>, Nøyaktighetsklasse <dbl>, Utvalgt.Na
 tur.type <chr>, ...[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 258.
+Package xcolor Warning: Incompatible color definition on input line 299.
 
 
-Package xcolor Warning: Incompatible color definition on input line 268.
+Package xcolor Warning: Incompatible color definition on input line 309.
 
 
-Package xcolor Warning: Incompatible color definition on input line 268.
+Package xcolor Warning: Incompatible color definition on input line 309.
 
 
-Package xcolor Warning: Incompatible color definition on input line 280.
-
-[2]
-
-Package xcolor Warning: Incompatible color definition on input line 288.
+Package xcolor Warning: Incompatible color definition on input line 315.
 
 
-Package xcolor Warning: Incompatible color definition on input line 288.
+Package xcolor Warning: Incompatible color definition on input line 321.
 
 
-Package xcolor Warning: Incompatible color definition on input line 297.
+Package xcolor Warning: Incompatible color definition on input line 321.
 
 
-Package xcolor Warning: Incompatible color definition on input line 308.
+Package xcolor Warning: Incompatible color definition on input line 336.
 
 
-Package xcolor Warning: Incompatible color definition on input line 308.
-
-File: figure/unnamed-chunk-6-1.png Graphic file (type bmp)
-<figure/unnamed-chunk-6-1.png>
-
-Package xcolor Warning: Incompatible color definition on input line 312.
+Package xcolor Warning: Incompatible color definition on input line 347.
 
 
-Package xcolor Warning: Incompatible color definition on input line 323.
+Package xcolor Warning: Incompatible color definition on input line 347.
 
 
-Package xcolor Warning: Incompatible color definition on input line 323.
-
-
-Package xcolor Warning: Incompatible color definition on input line 323.
+Package xcolor Warning: Incompatible color definition on input line 349.
 
 [3]
 
-Package xcolor Warning: Incompatible color definition on input line 323.
+Package xcolor Warning: Incompatible color definition on input line 358.
 
 
-Package xcolor Warning: Incompatible color definition on input line 323.
-
-
-Package xcolor Warning: Incompatible color definition on input line 327.
-
-
-Package xcolor Warning: Incompatible color definition on input line 337.
-
-
-Package xcolor Warning: Incompatible color definition on input line 337.
-
-
-Package xcolor Warning: Incompatible color definition on input line 345.
-
-
-Package xcolor Warning: Incompatible color definition on input line 351.
-
-
-Package xcolor Warning: Incompatible color definition on input line 351.
+Package xcolor Warning: Incompatible color definition on input line 358.
 
 
 Package xcolor Warning: Incompatible color definition on input line 364.
 
 
-Package xcolor Warning: Incompatible color definition on input line 374.
+Package xcolor Warning: Incompatible color definition on input line 377.
 
 
-Package xcolor Warning: Incompatible color definition on input line 374.
+Package xcolor Warning: Incompatible color definition on input line 377.
 
+File: figure/tree_square_dist-1.png Graphic file (type bmp)
+<figure/tree_square_dist-1.png>
 
-Package xcolor Warning: Incompatible color definition on input line 376.
-
-
-Package xcolor Warning: Incompatible color definition on input line 382.
-
-
-Package xcolor Warning: Incompatible color definition on input line 382.
+Package xcolor Warning: Incompatible color definition on input line 390.
 
 [4]
 
-Package xcolor Warning: Incompatible color definition on input line 391.
+Package xcolor Warning: Incompatible color definition on input line 401.
 
 
-Package xcolor Warning: Incompatible color definition on input line 397.
+Package xcolor Warning: Incompatible color definition on input line 401.
 
 
-Package xcolor Warning: Incompatible color definition on input line 397.
+Package xcolor Warning: Incompatible color definition on input line 405.
 
 
-Package xcolor Warning: Incompatible color definition on input line 407.
+Package xcolor Warning: Incompatible color definition on input line 430.
 
 
-Package xcolor Warning: Incompatible color definition on input line 413.
+Package xcolor Warning: Incompatible color definition on input line 430.
 
 
-Package xcolor Warning: Incompatible color definition on input line 413.
+Package xcolor Warning: Incompatible color definition on input line 432.
 
 
-Package xcolor Warning: Incompatible color definition on input line 424.
+Package xcolor Warning: Incompatible color definition on input line 436.
 
 
-Package xcolor Warning: Incompatible color definition on input line 435.
+Package xcolor Warning: Incompatible color definition on input line 436.
 
 
-Package xcolor Warning: Incompatible color definition on input line 435.
+Package xcolor Warning: Incompatible color definition on input line 440.
 
 
-Package xcolor Warning: Incompatible color definition on input line 439.
+Package xcolor Warning: Incompatible color definition on input line 449.
 
 
-Package xcolor Warning: Incompatible color definition on input line 457.
-
-
-Package xcolor Warning: Incompatible color definition on input line 457.
-
-
-Package xcolor Warning: Incompatible color definition on input line 459.
+Package xcolor Warning: Incompatible color definition on input line 449.
 
 [5]
+Overfull \hbox (48.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ## Bounding box:  xmin: 304498.2 ymin: 6429778 xmax: 622204.1
+ ymax: 6842370[] 
+ []
 
-Package xcolor Warning: Incompatible color definition on input line 472.
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##    ssbid          nearest_dist                            
+                  geom[] 
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 472.
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##    <chr>                   [m]                            
+    <MULTIPOLYGON [m]>[] 
+ []
 
 
-Package xcolor Warning: Incompatible color definition on input line 474.
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##  1 20830006464000           0  (((435998.5 6442574, 435954
+.1 6443071, 436451.1 ~[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##  2 20835006463500           0  (((436539.8 6442121, 436495
+.5 6442618, 436992.4 ~[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##  3 20605006483000         499. (((411948.5 6459458, 411904
+.1 6459955, 412400.9 ~[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##  4 20610006482000         499. (((412534.3 6458509, 412489
+.9 6459006, 412986.7 ~[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##  5 21035006539000         499. (((449693.8 6518953, 449649
+ 6519450, 450146.1 65~[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##  6 21040006540000         499. (((450101.4 6519991, 450056
+.7 6520488, 450553.7 ~[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##  7 21720006586000         499. (((513594.4 6571828, 513549
+.5 6572326, 514046.8 ~[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##  8 21730006586000         499. (((514589.1 6571918, 514544
+.1 6572416, 515041.4 ~[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ##  9 21965006564500        1117. (((539896 6552641, 539851.2
+ 6553139, 540348.6 65~[] 
+ []
+
+
+Overfull \hbox (90.75pt too wide) in paragraph at lines 471--471
+[]\TU/lmtt/m/n/10 ## 10 21980006563500        1117. (((541478 6551781, 541433.2
+ 6552278, 541930.6 65~[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 475.
 
 
 Package xcolor Warning: Incompatible color definition on input line 488.
@@ -810,29 +855,794 @@ Package xcolor Warning: Incompatible color definition on input line 488.
 Package xcolor Warning: Incompatible color definition on input line 488.
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 493--493
+Package xcolor Warning: Incompatible color definition on input line 492.
+
+
+Package xcolor Warning: Incompatible color definition on input line 499.
+
+
+Package xcolor Warning: Incompatible color definition on input line 499.
+
+
+Package xcolor Warning: Incompatible color definition on input line 501.
+
+
+Package xcolor Warning: Incompatible color definition on input line 506.
+
+
+Package xcolor Warning: Incompatible color definition on input line 506.
+
+
+Package xcolor Warning: Incompatible color definition on input line 510.
+
+
+Package xcolor Warning: Incompatible color definition on input line 515.
+
+
+Package xcolor Warning: Incompatible color definition on input line 515.
+
+
+Package xcolor Warning: Incompatible color definition on input line 517.
+
+
+Package xcolor Warning: Incompatible color definition on input line 531.
+
+
+Package xcolor Warning: Incompatible color definition on input line 531.
+
+
+Overfull \vbox (1.98993pt too high) detected at line 531
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 531.
+
+[6]
+
+Package xcolor Warning: Incompatible color definition on input line 531.
+
+
+Package xcolor Warning: Incompatible color definition on input line 531.
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 536--536
 []\TU/lmtt/m/n/10 ## Warning: palette colors names missing for FALSE, TRUE. The
 refore, palette color[] 
  []
 
-File: figure/unnamed-chunk-17-1.png Graphic file (type bmp)
-<figure/unnamed-chunk-17-1.png>
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 498.
-[6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 498.
+File: figure/all_trees-1.png Graphic file (type bmp)
+<figure/all_trees-1.png>
+
+Package xcolor Warning: Incompatible color definition on input line 544.
+
+
+Package xcolor Warning: Incompatible color definition on input line 548.
+
+
+Package xcolor Warning: Incompatible color definition on input line 548.
+
+
+Package xcolor Warning: Incompatible color definition on input line 552.
+
+
+Package xcolor Warning: Incompatible color definition on input line 563.
+
+
+Package xcolor Warning: Incompatible color definition on input line 563.
+
+
+Package xcolor Warning: Incompatible color definition on input line 563.
+
+[7]
+
+Package xcolor Warning: Incompatible color definition on input line 563.
+
+
+Package xcolor Warning: Incompatible color definition on input line 563.
+
+
+Package xcolor Warning: Incompatible color definition on input line 569.
+
+
+Package xcolor Warning: Incompatible color definition on input line 590.
+
+
+Package xcolor Warning: Incompatible color definition on input line 590.
+
+
+Package xcolor Warning: Incompatible color definition on input line 592.
+
+
+Package xcolor Warning: Incompatible color definition on input line 606.
+
+
+Package xcolor Warning: Incompatible color definition on input line 606.
+
+
+Package xcolor Warning: Incompatible color definition on input line 610.
+
+
+Package xcolor Warning: Incompatible color definition on input line 629.
+
+
+Package xcolor Warning: Incompatible color definition on input line 629.
+
+
+Package xcolor Warning: Incompatible color definition on input line 629.
+
+[8]
+
+Package xcolor Warning: Incompatible color definition on input line 629.
+
+
+Package xcolor Warning: Incompatible color definition on input line 629.
+
+
+Package xcolor Warning: Incompatible color definition on input line 634.
+
+
+Package xcolor Warning: Incompatible color definition on input line 646.
+
+
+Package xcolor Warning: Incompatible color definition on input line 646.
+
+
+Overfull \hbox (27.75pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ## Bounding box:  xmin: 304977 ymin: 6442025 xmax: 574419 yma
+x: 6678309[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##    RuteID rute_id_rand_order rute_id~1 tree_~2 no_tr~3    
+     geometry[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##     <dbl> <fct>                  <int>   <int>   <int>    
+  <POINT [m]>[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##  1    445 rute_445                   3       1       1 (46
+2600 6461819)[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##  2    230 rute_230                   8       1       1 (41
+2960 6458942)[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##  3    165 rute_165                  21       1       1 (51
+7631 6530234)[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##  4     35 rute_35                   27       1       1 (40
+8877 6453442)[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##  5    262 rute_262                  28       1       1 (50
+4991 6575610)[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##  6    438 rute_438                  38       1       1 (48
+5619 6480188)[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##  7    177 rute_177                  47       1       1 (56
+2559 6549777)[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##  8     40 rute_40                   54       1       1 (43
+6656 6442542)[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##  9     69 rute_69                   55       1       1 (51
+4813 6572424)[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ## 10    239 rute_239                  67       1       1 (44
+9725 6504552)[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ## # ... with 20 more rows, and abbreviated variable names 1:
+ rute_id_order,[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 673.
+
+[9]
+
+Package xcolor Warning: Incompatible color definition on input line 690.
+
+
+Package xcolor Warning: Incompatible color definition on input line 690.
+
+
+Overfull \hbox (69.75pt too wide) in paragraph at lines 696--696
+[]\TU/lmtt/m/n/10 ## Note: method with signature []DBIObject#sf[] chosen for fu
+nction []dbDataType[],[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 698.
+
+
+Package xcolor Warning: Incompatible color definition on input line 707.
+
+
+Package xcolor Warning: Incompatible color definition on input line 707.
+
+
+Overfull \hbox (169.5pt too wide) in paragraph at lines 716--716
+[]\TU/lmtt/m/n/10 ##                 ALTER TABLE hule_eiker_insekt.oak_sel_rand
+om_order ADD PRIMARY KEY(row_number);[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 718.
+
+
+Package xcolor Warning: Incompatible color definition on input line 727.
+
+
+Package xcolor Warning: Incompatible color definition on input line 727.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 732--732
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (153.75pt too wide) in paragraph at lines 741--741
+[]\TU/lmtt/m/n/10 ##   ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD C
+OLUMN geom Geometry(Point, 25832);[] 
+ []
+
+[10]
+
+Package xcolor Warning: Incompatible color definition on input line 743.
+
+
+Package xcolor Warning: Incompatible color definition on input line 753.
+
+
+Package xcolor Warning: Incompatible color definition on input line 753.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 758--758
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (185.25pt too wide) in paragraph at lines 768--768
+[]\TU/lmtt/m/n/10 ##   ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD C
+OLUMN geom_25833 Geometry(Point, 25833);[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 770.
+
+
+Package xcolor Warning: Incompatible color definition on input line 781.
+
+
+Package xcolor Warning: Incompatible color definition on input line 781.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 786--786
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (101.25pt too wide) in paragraph at lines 797--797
+[]\TU/lmtt/m/n/10 ##                 geom_25833 = ST_Transform(geometry, 25833)
+::Geometry(Point, 25833)[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 799.
+
+
+Package xcolor Warning: Incompatible color definition on input line 808.
+
+
+Package xcolor Warning: Incompatible color definition on input line 808.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 813--813
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+[11]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 822--822
+[]\TU/lmtt/m/n/10 ##   ALTER TABLE hule_eiker_insekt.oak_sel_random_order DROP 
+COLUMN geometry;[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 824.
+
+
+Package xcolor Warning: Incompatible color definition on input line 833.
+
+
+Package xcolor Warning: Incompatible color definition on input line 833.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 838--838
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (132.75pt too wide) in paragraph at lines 847--847
+[]\TU/lmtt/m/n/10 ##                 CREATE INDEX ON hule_eiker_insekt.oak_sel_
+random_order USING Gist(geom);[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 849.
+
+
+Package xcolor Warning: Incompatible color definition on input line 858.
+
+
+Package xcolor Warning: Incompatible color definition on input line 858.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 863--863
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (164.25pt too wide) in paragraph at lines 872--872
+[]\TU/lmtt/m/n/10 ##                 CREATE INDEX ON hule_eiker_insekt.oak_sel_
+random_order USING Gist(geom_25833);[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 874.
+
+
+Package xcolor Warning: Incompatible color definition on input line 886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 886.
+
+[12]
+
+Package xcolor Warning: Incompatible color definition on input line 886.
+
+
+Package xcolor Warning: Incompatible color definition on input line 886.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 891--891
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 903--903
+[]\TU/lmtt/m/n/10 ## FROM "AdministrativeUnits".norway_counties_fylker_polygons
+_2020 f[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 905.
+
+
+Package xcolor Warning: Incompatible color definition on input line 917.
+
+
+Package xcolor Warning: Incompatible color definition on input line 917.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 922--922
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 934--934
+[]\TU/lmtt/m/n/10 ## FROM "AdministrativeUnits".norway_municipalities_kommuner_
+polygon_2020 f[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 936.
+
+
+Package xcolor Warning: Incompatible color definition on input line 945.
+
+
+Package xcolor Warning: Incompatible color definition on input line 945.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 950--950
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+[13]
+Overfull \hbox (106.5pt too wide) in paragraph at lines 959--959
+[]\TU/lmtt/m/n/10 ##   ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD C
+OLUMN lon_lat_25833 text;[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 961.
+
+
+Package xcolor Warning: Incompatible color definition on input line 971.
+
+
+Package xcolor Warning: Incompatible color definition on input line 971.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 976--976
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (285.0pt too wide) in paragraph at lines 986--986
+[]\TU/lmtt/m/n/10 ##                 SET lon_lat_25833 = round(ST_X(geom_25833)
+::numeric, 6) || [],[] || round(ST_Y(geom_25833)::numeric, 6)[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 988.
+
+
+Package xcolor Warning: Incompatible color definition on input line 997.
+
+
+Package xcolor Warning: Incompatible color definition on input line 997.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1002--1002
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (96.0pt too wide) in paragraph at lines 1011--1011
+[]\TU/lmtt/m/n/10 ##   ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD C
+OLUMN bruksnummer text;[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1013.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1022.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1022.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1022.
+
+[14]
+
+Package xcolor Warning: Incompatible color definition on input line 1022.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1022.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1027--1027
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1036--1036
+[]\TU/lmtt/m/n/10 ##   ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD C
+OLUMN grunneier text;[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1038.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1047.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1047.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1052--1052
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (127.5pt too wide) in paragraph at lines 1061--1061
+[]\TU/lmtt/m/n/10 ##   ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD C
+OLUMN grunneier_telefon text;[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1063.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1072.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1072.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1077--1077
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (117.0pt too wide) in paragraph at lines 1086--1086
+[]\TU/lmtt/m/n/10 ##   ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD C
+OLUMN grunneier_epost text;[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1088.
+
+[15]
+
+Package xcolor Warning: Incompatible color definition on input line 1097.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1097.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1102--1102
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (127.5pt too wide) in paragraph at lines 1111--1111
+[]\TU/lmtt/m/n/10 ##   ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD C
+OLUMN grunneier_adresse text;[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1113.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1122.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1122.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1127--1127
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1136--1136
+[]\TU/lmtt/m/n/10 ##   GRANT ALL ON TABLE hule_eiker_insekt.oak_sel_random_orde
+r TO "oyvind.hamre"[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1138.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1147.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1147.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1152--1152
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (101.25pt too wide) in paragraph at lines 1161--1161
+[]\TU/lmtt/m/n/10 ##   GRANT ALL ON TABLE hule_eiker_insekt.oak_sel_random_orde
+r TO "rannveig.jacobsen"[] 
+ []
+
+[16]
+Underfull \hbox (badness 1436) in paragraph at lines 1171--1174
+[]\TU/lmr/m/n/10 This can be filtered in QGIS with “tree_order_within_square<=2
+ OR
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1175.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1182.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1182.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1184.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1196.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1196.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1198.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1206.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1206.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1213.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1218.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1218.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1220.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1229.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1229.
+
+[17]
+
+Package xcolor Warning: Incompatible color definition on input line 1240.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1254.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1254.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1259--1259
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1275.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1284.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1284.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1289--1289
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (106.5pt too wide) in paragraph at lines 1298--1298
+[]\TU/lmtt/m/n/10 ##                 ALTER TABLE hule_eiker_insekt.selection_ss
+b ADD PRIMARY KEY(ssbid);[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1300.
+
+[18]
+
+Package xcolor Warning: Incompatible color definition on input line 1309.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1309.
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1314--1314
+[]\TU/lmtt/m/n/10 ## Warning in result_create(conn@ptr, statement, immediate): 
+Closing open result[] 
+ []
+
+
+Overfull \hbox (101.25pt too wide) in paragraph at lines 1323--1323
+[]\TU/lmtt/m/n/10 ##                 CREATE INDEX ON  hule_eiker_insekt.selecti
+on_ssb USING Gist(geom);[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1327.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1341.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1341.
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 1346--1346
+[]\TU/lmtt/m/n/10 ## Warning: palette colors names missing for FALSE, TRUE. The
+refore, palette color[] 
+ []
+
+File: figure/unnamed-chunk-29-1.png Graphic file (type bmp)
+<figure/unnamed-chunk-29-1.png>
+[19]
+Overfull \hbox (2.5pt too wide) in paragraph at lines 1353--1355
+\TU/lmr/m/n/10 Project “hule_eiker” at P:\153018_overvaking_av_insekter_i_hule_
+eiker\GIS. 
+ []
+
+
+Underfull \hbox (badness 2644) in paragraph at lines 1370--1372
+[]\TU/lmr/m/n/10 Filter = tree_order_within_square<=2 OR (no_trees_within_squar
+e<2
+ []
+
+
+Overfull \hbox (45.31204pt too wide) in paragraph at lines 1373--1376
+[]\TU/lmr/m/n/10 If these trees are not enough, we can remove or change the ‘tr
+ee_order_within_square<=2’
+ []
+
+[20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1397.
+[21]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1397.
 (./loc_selection.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 498.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 498.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1397.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1397.
+
 Package rerunfilecheck Info: File `loc_selection.out' has not changed.
-(rerunfilecheck)             Checksum: 4ABB384ED18D742D51BE864AEC39879B;197.
+(rerunfilecheck)             Checksum: 987D9FA3FD1F376179AB1C842FBE87FF;545.
  ) 
 Here is how much of TeX's memory you used:
- 16011 strings out of 481252
- 291208 string characters out of 5923906
- 637620 words of memory out of 5000000
- 32731 multiletter control sequences out of 15000+600000
+ 16021 strings out of 481252
+ 291496 string characters out of 5923906
+ 635914 words of memory out of 5000000
+ 32740 multiletter control sequences out of 15000+600000
  545346 words of font info for 52 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 50i,6n,58p,810b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 50i,7n,58p,810b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on loc_selection.pdf (6 pages).
+Output written on loc_selection.pdf (21 pages).
