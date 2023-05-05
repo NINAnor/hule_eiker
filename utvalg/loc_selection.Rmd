@@ -324,9 +324,11 @@ tree_sel_random_order %>%
 Add a note if single trees are farther away than distance limit. 
 ```{r}
 tree_sel_random_order <- tree_sel_random_order %>% 
-  mutate(single_and_lonely = no_trees_within_square <2 & nearest_dist < units::set_units(largest_dist_to_neighbor_m, "m"),
+  mutate(single_and_lonely = no_trees_within_square < 2 & 
+           nearest_dist < units::set_units(largest_dist_to_neighbor_m, "m"),
          fylke_navn = "",
-         kommune_navn = "") %>% 
+         kommune_navn = "",
+         kommune_no_2022 = "") %>% 
   select(selection_order,
          rand_selection_order,
          rute_id_order,
@@ -350,9 +352,9 @@ tree_sel_random_order %>%
 ```
 
 
-Save this complete list for QGIS
+Save this complete list for QGIS. Also do some PostGIS stuff.
 
-```{r, eval = T}
+```{r, eval = cache_var}
 #Need my permissions
 my_con <- dbConnect(Postgres(),
                     host = "gisdata-db.nina.no",
@@ -366,17 +368,20 @@ dbWriteTable(my_con,
 
 dbSendStatement(my_con,
                 "
-                ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD PRIMARY KEY(row_number);
+                ALTER TABLE hule_eiker_insekt.oak_sel_random_order 
+                ADD PRIMARY KEY(row_number);
                 ")
 
 dbSendStatement(my_con,
                 "
-  ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD COLUMN geom Geometry(Point, 25832);
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order 
+  ADD COLUMN geom Geometry(Point, 25832);
   ")
 
 dbSendStatement(my_con,
                 "
-  ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD COLUMN geom_25833 Geometry(Point, 25833);
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order 
+  ADD COLUMN geom_25833 Geometry(Point, 25833);
   
   ")
 
@@ -389,7 +394,8 @@ dbSendStatement(my_con,
 
 dbSendStatement(my_con,
                 "
-  ALTER TABLE hule_eiker_insekt.oak_sel_random_order DROP COLUMN geometry;
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order 
+  DROP COLUMN geometry;
   ")
 
 dbSendStatement(my_con,
@@ -417,6 +423,30 @@ FROM \"AdministrativeUnits\".norway_municipalities_kommuner_polygon_2020 f
 WHERE ST_Intersects(oak.geom_25833, f.geom)
                 ")
 
+dbSendStatement(my_con,
+                "
+UPDATE hule_eiker_insekt.oak_sel_random_order oak
+set kommune_no_2022 = f.kommunenum
+FROM \"AdministrativeUnits\".norway_municipalities_kommuner_polygon_2020 f
+WHERE ST_Intersects(oak.geom_25833, f.geom)
+                ")
+
+
+dbSendStatement(my_con,
+                "
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD COLUMN east_west text;
+  ")
+
+dbSendStatement(my_con,
+                "
+UPDATE hule_eiker_insekt.oak_sel_random_order oak
+set east_west = CASE 
+WHEN fylke_navn IN ('Oslo', 'Vestfold og Telemark','Viken') 
+THEN 'east' 
+ELSE 'west'
+END;
+
+")
 
 
 dbSendStatement(my_con,
@@ -427,35 +457,47 @@ dbSendStatement(my_con,
 dbSendStatement(my_con,
                 "
                 UPDATE hule_eiker_insekt.oak_sel_random_order
-                SET lon_lat_25833 = round(ST_X(geom_25833)::numeric, 6) || ',' || round(ST_Y(geom_25833)::numeric, 6)
+                SET lon_lat_25833 = round(ST_X(geom_25833)::numeric, 6) || 
+                  ',' || round(ST_Y(geom_25833)::numeric, 6)
                 ")
 
 
 dbSendStatement(my_con,
                 "
-  ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD COLUMN bruksnummer text;
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order 
+  ADD COLUMN matrikkel_no text;
   ")
 
 
 dbSendStatement(my_con,
                 "
-  ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD COLUMN grunneier text;
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order 
+  ADD COLUMN grunneier text;
   ")
 
 
 dbSendStatement(my_con,
                 "
-  ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD COLUMN grunneier_telefon text;
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order 
+  ADD COLUMN grunneier_telefon text;
   ")
 
 dbSendStatement(my_con,
                 "
-  ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD COLUMN grunneier_epost text;
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order 
+  ADD COLUMN grunneier_epost text;
   ")
 
 dbSendStatement(my_con,
                 "
-  ALTER TABLE hule_eiker_insekt.oak_sel_random_order ADD COLUMN grunneier_adresse text;
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order
+  ADD COLUMN grunneier_adresse text;
+  ")
+
+dbSendStatement(my_con,
+                "
+  ALTER TABLE hule_eiker_insekt.oak_sel_random_order
+  ADD COLUMN kommentar text;
   ")
 
 
@@ -471,14 +513,43 @@ dbSendStatement(my_con,
                 "
                 )
 
+dbSendStatement(my_con,
+                "
+  GRANT ALL ON TABLE hule_eiker_insekt.oak_sel_random_order TO gisuser;
+                "
+                )
 
+ dbSendStatement(my_con,
+                 "
+   UPDATE hule_eiker_insekt.oak_sel_random_order o
+   SET matrikkel_no =  teig.kommunenummer || ';' ||
+    REPLACE(teig.matrikkelnummertekst, '/', ';')
+
+   FROM matrikkeleneiendomskartteig.teig teig
+   WHERE ST_Intersects(o.geom_25833, teig.omrade)
+   
+                 "
+                 )
+
+
+  dbSendStatement(my_con,
+                 "
+                 DROP TABLE IF EXISTS hule_eiker_insekt.oak_sel_random_order_backup;
+                 ")
+  
+  dbSendStatement(my_con,
+                 "
+                CREATE TABLE hule_eiker_insekt.oak_sel_random_order_backup
+                AS TABLE hule_eiker_insekt.oak_sel_random_order WITH DATA;
+                 ")
 ```
 
 
 
 
+
 Test results of filtering out a set of trees
---------------
+===========
 Here we consider only the first 2 trees within each square, plus the single trees that are not isolated. Then we take the first 100 rows (trees).
 
 This can be filtered in QGIS with "tree_order_within_square<=2 OR
@@ -490,7 +561,7 @@ tree_sel_test <- tree_sel_random_order %>%
          (no_trees_within_square <2 & !single_and_lonely))  %>% 
   slice(1:100)
 ```
-```{r, eval = F}
+```{r, eval = F, echo = FALSE}
 tree_sel_test %>% 
     select(RuteID, 
          rute_id_rand_order,
@@ -501,19 +572,199 @@ tree_sel_test %>%
 ```
 
 
+Trestørrelse
+-------
 
 ```{r}
-n_sel_squares <- tree_sel_test %>% 
+n_tree_size <- tree_sel_test %>% 
   st_drop_geometry() %>% 
-  ungroup() %>% 
-  summarise(no_ruter = n_distinct(RuteID)) %>% 
-  pull()
+  group_by(large) %>% 
+  summarise(no_trees = n()) 
+
+n_tree_size
 ```
 
-Of these first 100 prioritized trees, we have 35 small trees, and 65 small. Pretty close to double the amount of larger trees. Good enough?
+```{r}
+n_tree_size_exp <- tree_sel_random_order %>% 
+  st_drop_geometry() %>% 
+  group_by(large) %>% 
+  summarise(no_trees = n()) %>% 
+  ungroup() %>% 
+  mutate(no_trees_perc = round((no_trees / sum(no_trees) * 100), 2))
+  
+
+n_tree_size_exp
+```
+
+
+```{r ford_storlek}
+ggplot(n_tree_size, aes(y = no_trees, x = large)) +
+  geom_bar(aes(fill = large),
+           stat = "identity") +
+  geom_point(aes(y = no_trees_perc, x = large),
+             data = n_tree_size_exp,
+             col = "red") +
+  scale_fill_nina(name = "Diam. > 200cm") +
+  ylab("Antall tre i utvalget") +
+  xlab("Diam. > 200cm")
+```
+
+Of these first 100 prioritized trees, we have 35 small trees, and 65 small. Pretty close to double the amount of larger trees. The red dots show the expected number of large and small, if we had choosen them randomly. Good enough?
+
+
+Isolerte trær
+---------
+```{r}
+n_isolated <- tree_sel_test %>% 
+  st_drop_geometry() %>% 
+  group_by(no_trees_within_square > 1 ) %>% 
+  summarise(no_trees = n()) 
+
+n_isolated
+
+```
+
+```{r}
+n_isolated_exp <- tree_sel_random_order %>% 
+  st_drop_geometry() %>% 
+  group_by(no_trees_within_square > 1 ) %>% 
+  summarise(no_trees = n()) %>% 
+  ungroup() %>% 
+  mutate(no_trees_perc = round((no_trees / sum(no_trees) * 100), 2))
+  
+
+n_isolated_exp
+```
+
+```{r ford_isolated}
+ggplot(n_isolated, aes(y = no_trees, x = `no_trees_within_square > 1`)) +
+  geom_bar(aes(fill = `no_trees_within_square > 1`),
+           stat = "identity") +
+  geom_point(aes(y = no_trees_perc, x = `no_trees_within_square > 1`),
+             data = n_isolated_exp,
+             col = "red") +
+  scale_fill_nina(name = "Isolert tre") +
+  ylab("Antall tre i utvalget") +
+  xlab("Isolert tre")
+```
+
+
+
+Verdi-kategorier, fordeling
+--------
+```{r}
+n_verdi <- tree_sel_test %>% 
+  st_drop_geometry() %>% 
+  group_by(Verdi ) %>% 
+  summarise(no_trees = n()) 
+
+n_verdi
+
+```
+
+```{r}
+n_verdi_exp <- tree_sel_random_order %>% 
+  st_drop_geometry() %>% 
+  group_by(Verdi) %>% 
+  summarise(no_trees = n()) %>% 
+  ungroup() %>% 
+  mutate(no_trees_perc = round((no_trees / sum(no_trees) * 100), 2))
+  
+
+n_verdi_exp
+```
+
+```{r ford_verdi}
+ggplot(n_verdi, aes(y = no_trees, x = Verdi)) +
+  geom_bar(aes(fill = Verdi),
+           stat = "identity") +
+  geom_point(aes(y = no_trees_perc, x = Verdi),
+             data = n_verdi_exp,
+             col = "red") +
+  scale_fill_nina(name = "Verdi") +
+  ylab("Antall tre i utvalget") +
+  xlab("Verdi kat.")
+```
+
+
+Plassering
+--------------
+```{r}
+n_plass <- tree_sel_test %>% 
+  st_drop_geometry() %>% 
+  group_by(PlasseringAR5) %>% 
+  summarise(no_trees = n()) 
+
+n_plass
+
+```
+
+```{r}
+n_plass_exp <- tree_sel_random_order %>% 
+  st_drop_geometry() %>% 
+  group_by(PlasseringAR5) %>% 
+  summarise(no_trees = n()) %>% 
+  ungroup() %>% 
+  mutate(no_trees_perc = round((no_trees / sum(no_trees) * 100), 2))
+  
+
+n_plass_exp
+```
+
+```{r ford_plass}
+ggplot(n_plass, aes(y = no_trees, x = PlasseringAR5)) +
+  geom_bar(aes(fill = PlasseringAR5),
+           stat = "identity") +
+  geom_point(aes(y = no_trees_perc, x = PlasseringAR5),
+             data = n_plass_exp,
+             col = "red") +
+  scale_fill_nina(name = "Plassering") +
+  ylab("Antall tre i utvalget") +
+  xlab("Plassering")
+```
+
+
+Visible holes
+----------
+
+```{r}
+n_hole <- tree_sel_test %>% 
+  st_drop_geometry() %>% 
+  group_by(Synlig_hul) %>% 
+  summarise(no_trees = n()) 
+
+n_hole
+
+```
+
+```{r}
+n_hole_exp <- tree_sel_random_order %>% 
+  st_drop_geometry() %>% 
+  group_by(Synlig_hul) %>% 
+  summarise(no_trees = n()) %>% 
+  ungroup() %>% 
+  mutate(no_trees_perc = round((no_trees / sum(no_trees) * 100), 2))
+  
+
+n_hole_exp
+```
+
+```{r ford_hole}
+ggplot(n_hole, aes(y = no_trees, x = Synlig_hul)) +
+  geom_bar(aes(fill = Synlig_hul),
+           stat = "identity") +
+  geom_point(aes(y = no_trees_perc, x = Synlig_hul),
+             data = n_hole_exp,
+             col = "red") +
+  scale_fill_nina(name = "Synlig_hul") +
+  ylab("Antall tre i utvalget") +
+  xlab("Synlig_hul")
+```
+
 
 
 Fetch the ssb info for the selection.
+======
 
 ```{r}
 
@@ -521,7 +772,7 @@ shortlist_ssb_500m <- cand_ssb_500m %>%
   filter(ssbid %in% tree_sel_test$ssbid)
 ```
 
-```{r}
+```{r, eval = cache_var}
 dbSendStatement(my_con,
                 "
       DROP TABLE IF EXISTS hule_eiker_insekt.selection_ssb ; 
@@ -595,10 +846,9 @@ If these trees are not enough, we can remove or change the 'tree_order_within_sq
 
 Proposed work within qgis:
 
-1. Start with tree 1 (selection_order = 1), show the info with the "i" button in QGIS. 
-2. Copy the lat_lon_25833 info into https://norgeskart.no. Select 'marker eiendom'. 
-3. Get the grunnbok (login with bankid). Save it in the folder on P (or perhaps sharepoint?).
-4. Find the owner. Register their contact info in the last columns in the oak_sel_random_order table.
+1. Sort the table on selection order. Start with tree 1 (selection_order = 1), show the info with the "i" button in QGIS. 
+2. Use the matrikkel_no with https://matrikkeldata.nina.no/ to get the owner.
+3. Find the contact info for the owner.
 
 
 
