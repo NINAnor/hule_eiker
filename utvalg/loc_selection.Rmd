@@ -325,7 +325,7 @@ Add a note if single trees are farther away than distance limit.
 ```{r}
 tree_sel_random_order <- tree_sel_random_order %>% 
   mutate(single_and_lonely = no_trees_within_square < 2 & 
-           nearest_dist < units::set_units(largest_dist_to_neighbor_m, "m"),
+         nearest_dist < units::set_units(largest_dist_to_neighbor_m, "m"),
          fylke_navn = "",
          kommune_navn = "",
          kommune_no_2022 = "") %>% 
@@ -354,7 +354,7 @@ tree_sel_random_order %>%
 
 Save this complete list for QGIS. Also do some PostGIS stuff.
 
-```{r, eval = cache_var}
+```{r, eval = FALSE}
 #Need my permissions
 my_con <- dbConnect(Postgres(),
                     host = "gisdata-db.nina.no",
@@ -601,10 +601,13 @@ n_tree_size_exp
 ggplot(n_tree_size, aes(y = no_trees, x = large)) +
   geom_bar(aes(fill = large),
            stat = "identity") +
-  geom_point(aes(y = no_trees_perc, x = large),
-             data = n_tree_size_exp,
-             col = "red") +
+  geom_point(aes(y = no_trees_perc, 
+                 x = large,
+                 col = "Exp."),
+             data = n_tree_size_exp) +
   scale_fill_nina(name = "Diam. > 200cm") +
+  scale_color_nina(name = "Expected from\nwhole sampl.",
+                   palette = "purple-green") +
   ylab("Antall tre i utvalget") +
   xlab("Diam. > 200cm")
 ```
@@ -640,10 +643,13 @@ n_isolated_exp
 ggplot(n_isolated, aes(y = no_trees, x = `no_trees_within_square > 1`)) +
   geom_bar(aes(fill = `no_trees_within_square > 1`),
            stat = "identity") +
-  geom_point(aes(y = no_trees_perc, x = `no_trees_within_square > 1`),
-             data = n_isolated_exp,
-             col = "red") +
+  geom_point(aes(y = no_trees_perc, 
+                 x = `no_trees_within_square > 1`,
+                 col = "Exp."),
+             data = n_isolated_exp) +
   scale_fill_nina(name = "Isolert tre") +
+    scale_color_nina(name = "Expected from\nwhole sampl.",
+                   palette = "purple-green") +
   ylab("Antall tre i utvalget") +
   xlab("Isolert tre")
 ```
@@ -678,10 +684,13 @@ n_verdi_exp
 ggplot(n_verdi, aes(y = no_trees, x = Verdi)) +
   geom_bar(aes(fill = Verdi),
            stat = "identity") +
-  geom_point(aes(y = no_trees_perc, x = Verdi),
-             data = n_verdi_exp,
-             col = "red") +
+  geom_point(aes(y = no_trees_perc, 
+                 x = Verdi,
+                 col = "Exp."),
+             data = n_verdi_exp) +
   scale_fill_nina(name = "Verdi") +
+  scale_color_nina(name = "Expected from\nwhole sampl.",
+                   palette = "purple-green") +
   ylab("Antall tre i utvalget") +
   xlab("Verdi kat.")
 ```
@@ -715,10 +724,13 @@ n_plass_exp
 ggplot(n_plass, aes(y = no_trees, x = PlasseringAR5)) +
   geom_bar(aes(fill = PlasseringAR5),
            stat = "identity") +
-  geom_point(aes(y = no_trees_perc, x = PlasseringAR5),
-             data = n_plass_exp,
-             col = "red") +
+  geom_point(aes(y = no_trees_perc, 
+                 x = PlasseringAR5,
+                 col = "Exp."),
+             data = n_plass_exp) +
   scale_fill_nina(name = "Plassering") +
+  scale_color_nina(name = "Expected from\nwhole sampl.",
+                   palette = "purple-green") +
   ylab("Antall tre i utvalget") +
   xlab("Plassering")
 ```
@@ -753,10 +765,13 @@ n_hole_exp
 ggplot(n_hole, aes(y = no_trees, x = Synlig_hul)) +
   geom_bar(aes(fill = Synlig_hul),
            stat = "identity") +
-  geom_point(aes(y = no_trees_perc, x = Synlig_hul),
-             data = n_hole_exp,
-             col = "red") +
+  geom_point(aes(y = no_trees_perc, 
+                 x = Synlig_hul,
+                 col = "Exp."),
+             data = n_hole_exp) +
   scale_fill_nina(name = "Synlig_hul") +
+  scale_color_nina(name = "Expected from\nwhole sampl.",
+                   palette = "purple-green") +
   ylab("Antall tre i utvalget") +
   xlab("Synlig_hul")
 ```
