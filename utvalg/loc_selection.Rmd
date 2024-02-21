@@ -640,7 +640,7 @@ ggplot(n_tree_size, aes(y = no_trees, x = large)) +
   xlab("Diam. > 200cm")
 ```
 
-Of these first 100 prioritized trees, we have 35 small trees, and 65 small. Pretty close to double the amount of larger trees. The red dots show the expected number of large and small, if we had choosen them randomly. Good enough?
+Of these first 100 prioritized trees, we have 35 small trees, and 65 small. Pretty close to double the amount of larger trees. The red dots show the expected number of large and small, if we had choosen them randomly. The random selection seems to come close to the population means.
 
 
 ##Isolated trees
@@ -804,9 +804,9 @@ ggplot(n_hole, aes(y = no_trees, x = Synlig_hul)) +
   xlab("Synlig_hul")
 ```
 
-Fylke
-----------
-Only got fylke in DB.
+## Counties / Fylke
+
+I have added the county information in the database. Will fetch the data back. 
 
 ```{r}
 fylke_test_raw <- tbl(con,
@@ -864,8 +864,8 @@ ggplot(n_fylke, aes(y = no_trees, x = fylke_navn)) +
 
 
 
-Fetch the ssb info for the selection.
-======
+## Fetch the ssb info for the selection.
+We have the SSB 500x500 grid geometries in the database. We join this to the selection set, and create a view that we can use for plotting maps.
 
 ```{r}
 
@@ -1041,8 +1041,10 @@ tm_shape(shortlist_ssb_500m) +
 
 
 
-Instruction for QGIS
-====================
+## Instruction for QGIS
+
+This instructions for some manual work in QGIS, going through the proposed selection, calling owners for permission, selecting the final set of trees.
+
 
 Project "hule_eiker" at P:\\153018_overvaking_av_insekter_i_hule_eiker\\GIS.
 
@@ -1073,11 +1075,210 @@ Proposed work within qgis:
 
 
 
-## Look at the actual selection
-
-Get used ssbids from the insect database...
-match to the candidate table.
-Produce plots that Rannveig wants.
+## Look at the final selection
+The final selection was made in QGIS, and phoning land owners. The final set of used localities are stored in an excel-file. We here fetch this selection and reproduce some plots for the report.
 
 
+Get the list of selected trees
+
+```{r}
+hule_eiker_2023_raw <- openxlsx::read.xlsx("../rawData/Feltark utfylt - insekter i hule eiker 2023.xlsx",
+                                       sheet = 2)
+
+hule_eiker_2023 <- hule_eiker_2023_raw %>% 
+  select(RuteID,
+         TreID,
+         Område) %>% 
+  as_tibble()
+```
+
+```{r}
+fylke_navn <- fylke_test %>% 
+  select(RuteID,
+         fylke_navn) %>% 
+distinct()
+```
+
+Fix some upper cases, and join fylke info.
+
+```{r}
+tree_sel_random_order <- tree_sel_random_order %>% 
+  mutate(PlasseringAR5 = stringr::str_to_sentence(PlasseringAR5)) %>% 
+  left_join(fylke_navn,
+            by = c("RuteID" = "RuteID"))
+```
+
+
+
+
+```{r}
+hule_eiker_2023_append <- hule_eiker_2023 %>%
+  left_join(tree_sel_random_order,
+            by = c("RuteID" = "RuteID",
+                   "TreID" = "TreID")) %>% 
+  left_join(fylke_navn,
+            by = c("RuteID" = "RuteID"))
+```
+
+
+### Location, land-types
+
+
+```{r}
+n_plass <- hule_eiker_2023_append %>% 
+  st_drop_geometry() %>% 
+  group_by(PlasseringAR5) %>% 
+  summarise(no_trees = n()) 
+
+n_plass
+
+```
+
+```{r}
+n_plass_exp <- tree_sel_random_order %>% 
+  st_drop_geometry() %>% 
+  group_by(PlasseringAR5) %>% 
+  summarise(no_trees = n()) %>% 
+  ungroup() %>% 
+  mutate(no_trees_perc = round((no_trees / sum(no_trees) * 50), 2))
+  
+
+n_plass_exp
+```
+
+```{r ford_plass_ost, fig.caption = "Fordeling av skogsplassering i de 50 tenkte valgte treerne i region Øst"}
+ggplot(n_plass, aes(y = no_trees, x = PlasseringAR5)) +
+  geom_bar(aes(fill = PlasseringAR5),
+           stat = "identity") +
+  geom_point(aes(y = no_trees_perc, 
+                 x = PlasseringAR5,
+                 col = "Forv."),
+             data = n_plass_exp) +
+  scale_fill_nina(name = "Plassering") +
+  scale_color_nina(name = "Forventet fra\nhele utvalget.",
+                   palette = "purple-green") +
+  ylab("Antall tre i utvalget") +
+  xlab("Plassering")
+```
+
+Do the same fig for the top 50 trees in the Western region (that we are expecting to choose)
+
+```{r}
+n_plass_west <- fylke_test %>%
+  st_drop_geometry() %>%
+  mutate(PlasseringAR5 = stringr::str_to_sentence(PlasseringAR5)) %>% 
+  filter(fylke_navn %in%  c("Vestland", "Agder", "Rogaland")) %>% 
+  arrange(rand_selection_order) %>% 
+  slice(1:50) %>% 
+  group_by(PlasseringAR5) %>% 
+  summarise(no_trees = n()) 
+
+n_plass_west
+
+```
+
+
+```{r ford_plass_west, fig.caption = "Fordeling av skogsplassering i de 50 tenkte valgte treerne i region Vest."}
+ggplot(n_plass_west, aes(y = no_trees, x = PlasseringAR5)) +
+  geom_bar(aes(fill = PlasseringAR5),
+           stat = "identity") +
+  geom_point(aes(y = no_trees_perc, 
+                 x = PlasseringAR5,
+                 col = "Forv."),
+             data = n_plass_exp) +
+  scale_fill_nina(name = "Plassering") +
+  scale_color_nina(name = "Forventet fra\nhele utvalget",
+                   palette = "purple-green") +
+  ylab("Antall tre i utvalget") +
+  xlab("Plassering")
+```
+
+### Location, counties
+
+
+```{r}
+n_fylke_ost <- hule_eiker_2023_append %>% 
+  st_drop_geometry() %>% 
+  group_by(fylke_navn.y) %>% 
+  summarise(no_trees = n()) 
+
+n_fylke_ost
+
+```
+
+```{r}
+n_fylke_exp_ost <- fylke_test %>% 
+  st_drop_geometry() %>% 
+  filter(fylke_navn %in% c("Vestfold og Telemark", "Viken", "Oslo")) %>% 
+  group_by(fylke_navn) %>% 
+  summarise(no_trees = n()) %>% 
+  ungroup() %>% 
+  mutate(no_trees_perc = round((no_trees / sum(no_trees) * 50), 2))
+  
+
+n_fylke_exp_ost
+```
+
+```{r ford_fylke_ost, fig.cap = "Fordeling av plassering i fylker, i det forventede utvalget i region Vest"}
+ggplot(n_fylke_ost, aes(y = no_trees, x = fylke_navn.y)) +
+  geom_bar(aes(fill = fylke_navn.y),
+           stat = "identity") +
+  geom_point(aes(y = no_trees_perc, 
+                 x = fylke_navn,
+                 col = "Forv."),
+             data = n_fylke_exp_ost) +
+  scale_fill_nina(name = "Fylke") +
+  scale_color_nina(name = "Forventet fra\nhele utvalget",
+                   palette = "purple-green") +
+  ylab("Antall tre i utvalget") +
+  xlab("Fylke") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+
+Do the same fig for the top 50 trees in the Western region (that we are expecting to choose)
+
+```{r}
+n_fylke_west <- fylke_test %>%
+  st_drop_geometry() %>%
+  mutate(PlasseringAR5 = stringr::str_to_sentence(PlasseringAR5)) %>% 
+  filter(fylke_navn %in%  c("Vestland", "Agder", "Rogaland")) %>% 
+  arrange(rand_selection_order) %>% 
+  slice(1:50) %>% 
+  group_by(fylke_navn) %>% 
+  summarise(no_trees = n()) 
+
+n_fylke_west
+
+```
+
+
+```{r}
+n_fylke_exp_west <- fylke_test %>% 
+  st_drop_geometry() %>% 
+  filter(fylke_navn %in% c("Vestland", "Agder", "Rogaland")) %>% 
+  group_by(fylke_navn) %>% 
+  summarise(no_trees = n()) %>% 
+  ungroup() %>% 
+  mutate(no_trees_perc = round((no_trees / sum(no_trees) * 50), 2))
+  
+
+n_fylke_exp_west
+```
+
+```{r ford_fylke_west, fig.caption = "Fordeling av skogsplassering i de 50 tenkte valgte treerne i region Vest."}
+ggplot(n_fylke_west, aes(y = no_trees, x = fylke_navn)) +
+  geom_bar(aes(fill = fylke_navn),
+           stat = "identity") +
+  geom_point(aes(y = no_trees_perc, 
+                 x = fylke_navn,
+                 col = "Forv."),
+             data = n_fylke_exp_west) +
+  scale_fill_nina(name = "Fylke") +
+  scale_color_nina(name = "Forventet fra\nhele utvalget",
+                   palette = "purple-green") +
+  ylab("Antall tre i utvalget") +
+  xlab("Fylke") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
 
