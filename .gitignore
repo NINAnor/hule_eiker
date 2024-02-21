@@ -3,5 +3,7 @@
 .RData
 .Ruserdata
 
-utvalg/figure
-utvalg/out
+
+*/utvalg/figure
+*/utvalg/out
+*/rawData/
