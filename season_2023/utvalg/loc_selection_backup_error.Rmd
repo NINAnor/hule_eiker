@@ -329,11 +329,10 @@ tree_sel_random_order %>%
 
 
 Add a note if single trees are farther away than distance limit. We will avoid these localities.
-!NB the error in nearest_dist. Corrected outside this script in 2024, and updated also here.
 ```{r}
 tree_sel_random_order <- tree_sel_random_order %>% 
   mutate(single_and_lonely = no_trees_within_square < 2 & 
-         nearest_dist > units::set_units(largest_dist_to_neighbor_m, "m"), 
+         nearest_dist < units::set_units(largest_dist_to_neighbor_m, "m"),
          fylke_navn = "",
          kommune_navn = "",
          kommune_no_2022 = "") %>% 
@@ -580,22 +579,13 @@ knitr::opts_chunk$set(
 
 We will here test the approach by selecting the first 100 in the random order. Here we consider only the first 2 trees within each square, plus the single trees that are not isolated. We then take the first 100 rows (trees).
 
-!ERROR
-This can be replicated in QGIS by filtering on:"
-(tree_order_within_square<=2 OR
+This can be replicated in QGIS by filtering on "tree_order_within_square<=2 OR
 (no_trees_within_square<2 AND single_and_lonely IS FALSE)"
-
-!NB there is an error in this filtering. It should be:
-"(tree_order_within_square<=2 AND
-no_trees_within_square >1) OR
-(no_trees_within_square<2 AND 
-single_and_lonely IS FALSE)"
-
 
 ```{r}
 tree_sel_test <- tree_sel_random_order %>% 
-  filter((tree_order_within_square <= 2 & no_trees_within_square >1) |
-           (no_trees_within_square <2 & !single_and_lonely))  %>% 
+  filter(tree_order_within_square <= 2 |
+         (no_trees_within_square <2 & !single_and_lonely))  %>% 
   slice(1:100)
 ```
 ```{r, eval = F, echo = FALSE}
@@ -825,7 +815,7 @@ fylke_test_raw <- tbl(con,
   collect()
 
 fylke_test <- fylke_test_raw %>%   
-  filter((tree_order_within_square <= 2 & no_trees_within_square >1) |
+  filter(tree_order_within_square <= 2 |
          (no_trees_within_square <2 & !single_and_lonely))  
 
 fylke_test_100 <- fylke_test %>% 
@@ -1008,7 +998,7 @@ CREATE OR REPLACE VIEW hule_eiker_insekt.squares_for_map
             sel.grunneier_adresse,
             sel.kommentar
            FROM hule_eiker_insekt.oak_sel_random_order sel
-          WHERE (sel.tree_order_within_square <= 2  AND sel.no_trees_within_square >1) OR (sel.no_trees_within_square < 2 AND sel.single_and_lonely IS FALSE)) foo
+          WHERE sel.tree_order_within_square <= 2 OR sel.no_trees_within_square < 2 AND sel.single_and_lonely IS FALSE) foo
      LEFT JOIN hule_eiker_insekt.selection_ssb s ON foo.ssbid::bigint = s.ssbid;
      ")
 
@@ -1070,8 +1060,7 @@ Some new columns:
 I have filtered the entire selection to only look at 2 trees or 1 tree if they are not isolated.
 
 Filter = 
-(tree_order_within_square<=2 AND no_trees_within_square >1)
-OR
+tree_order_within_square<=2 OR
 (no_trees_within_square<2 AND single_and_lonely IS FALSE)
 
 If these trees are not enough, we can remove or change the 'tree_order_within_square<=2' to show more trees within each square.
@@ -1179,7 +1168,7 @@ n_plass_west <- fylke_test %>%
   st_drop_geometry() %>%
   mutate(PlasseringAR5 = stringr::str_to_sentence(PlasseringAR5)) %>% 
   filter(fylke_navn %in%  c("Vestland", "Agder", "Rogaland")) %>% 
-  arrange(selection_order) %>% 
+  arrange(rand_selection_order) %>% 
   slice(1:50) %>% 
   group_by(PlasseringAR5) %>% 
   summarise(no_trees = n()) 
@@ -1254,7 +1243,7 @@ n_fylke_west <- fylke_test %>%
   st_drop_geometry() %>%
   mutate(PlasseringAR5 = stringr::str_to_sentence(PlasseringAR5)) %>% 
   filter(fylke_navn %in%  c("Vestland", "Agder", "Rogaland")) %>% 
-  arrange(selection_order) %>% 
+  arrange(rand_selection_order) %>% 
   slice(1:50) %>% 
   group_by(fylke_navn) %>% 
   summarise(no_trees = n()) 

@@ -1,0 +1,380 @@
+---
+title: "Selection of locations for insect monitoring in oaks"
+author: "Jens Å"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  NinaR::jensAnalysis:
+  highlight: tango
+fig_caption: yes
+toc: true
+---
+  
+
+## Intro
+Here is some work to chose the localities in the 2024 season of the insect monitoring in hollow oaks. We follow on the procedures we made for season 2023, so look at that for a full summary.
+
+In addition to this script, there is also some manual work done in QGIS, and the actual choosing and calling land owners happens outside this script as well.
+
+
+Most of the work is already done in 2023. The table "hule_eiker_insect"."oak_sel_random_order" is the primary information source, and we use filters on that to choose the trees. In fact, I thought all work was done in 2023 already, but for some reason, the table "hule_eiker_insect"."squares_for_map" only contains the squares in the eastern region, and no column for east_west, as the script indicates. I probably did the table only for the west, but documented how to do it for the whole region.
+So here I will redo this table, and add a boolean column for east_west. 
+
+```{r}
+suppressPackageStartupMessages({
+require(DBI)
+require(tidyverse)
+require(RPostgres)
+require(NinaR)
+})
+```
+
+
+```{r}
+con <- dbConnect(Postgres(),
+                    host = "gisdata-db.nina.no",
+                    dbname = "gisdata")
+```
+
+
+
+```{r}
+#| eval: false
+dbSendStatement(con,"
+ DROP VIEW hule_eiker_insekt.squares_for_map_west;
+")
+
+
+dbSendStatement(con,
+                "
+-- DROP VIEW hule_eiker_insekt.squares_for_map_west;
+
+CREATE OR REPLACE VIEW hule_eiker_insekt.squares_for_map_west
+ AS
+ SELECT DISTINCT ON (s.ssbid, foo.matrikkel_no) row_number() OVER (ORDER BY s.ssbid) AS id,
+    foo.\"Områdenavn\" AS omrade,
+    foo.\"RuteID\" AS rute_id,
+    s.ssbid,
+    foo.matrikkel_no,
+    foo.grunneier,
+    foo.grunneier_telefon,
+    foo.kommentar,
+    foo.kommune_navn,
+    foo.fylke_navn,
+    foo.no_trees_within_square,
+    round(st_x(st_transform(st_centroid(s.geom), 4326))::numeric, 6) AS lon_senterpkt,
+    round(st_y(st_transform(st_centroid(s.geom), 4326))::numeric, 6) AS lat_senterpkt,
+    s.geom
+   FROM ( SELECT sel.selection_order,
+            sel.rand_selection_order,
+            sel.rute_id_order,
+            sel.tree_order_within_square,
+            sel.single_and_lonely,
+            sel.no_trees_within_square,
+            sel.\"RuteID\",
+            sel.row_number,
+            sel.\"RuteJA\",
+            sel.\"TreID\",
+            sel.\"Antall\",
+            sel.\"Verdi\",
+            sel.\"Omkrets\",
+            sel.\"Synlig_hul\",
+            sel.\"Hulhet_areal_åpning\",
+            sel.\"Hulhet_Plassering\",
+            sel.\"Vedmuld\",
+            sel.\"Treform\",
+            sel.\"Barktype\",
+            sel.\"Mosedekning\",
+            sel.\"Vitalitet\",
+            sel.\"Kulturspor\",
+            sel.\"Omgivelser\",
+            sel.\"Renskog\",
+            sel.\"Mestskog\",
+            sel.\"Noeskog\",
+            sel.\"PlasseringAR5\",
+            sel.\"Forskrift_gammel\",
+            sel.\"Forskrift\",
+            sel.\"Vern\",
+            sel.\"Gjenvoksing\",
+            sel.\"Gjenvoksing2\",
+            sel.\"Skjøtselsbehov\",
+            sel.\"Kommune\",
+            sel.\"Områdenavn\",
+            sel.\"Nøyaktighetsklasse\",
+            sel.\"Utvalgt.Natur.type\",
+            sel.\"Eikeart\",
+            sel.\"Renskog3\",
+            sel.\"Mestskog4\",
+            sel.\"Noeskog5\",
+            sel.\"Renskog6\",
+            sel.\"Mestskog7\",
+            sel.\"Noeskog8\",
+            sel.\"Gone\",
+            sel.\"Not_found\",
+            sel.\"Ny_vitalitet\",
+            sel.\"Ny_gjenvoksing\",
+            sel.\"Ny_gjenvoksing2\",
+            sel.\"Change_vitalitet\",
+            sel.\"Change_gjenvoksing\",
+            sel.ssbid,
+            sel.nearest_dist,
+            sel.large,
+            sel.sel_prob,
+            sel.rute_id_rand_order,
+            sel.fylke_navn,
+            sel.kommune_navn,
+            sel.kommune_no_2022,
+            sel.geom,
+            sel.geom_25833,
+            sel.east_west,
+            sel.lon_lat_25833,
+            sel.matrikkel_no,
+            sel.grunneier,
+            sel.grunneier_telefon,
+            sel.grunneier_epost,
+            sel.grunneier_adresse,
+            sel.kommentar
+           FROM hule_eiker_insekt.oak_sel_random_order sel
+          WHERE 
+          (sel.tree_order_within_square <= 2 AND
+          sel.no_trees_within_square > 1)
+          OR (sel.no_trees_within_square < 2 AND sel.single_and_lonely IS FALSE)
+          ) foo
+     LEFT JOIN hule_eiker_insekt.selection_ssb s ON foo.ssbid::bigint = s.ssbid
+     AND foo.east_west = 'west';
+     ")
+
+
+dbSendStatement(con,
+                "
+ALTER TABLE hule_eiker_insekt.squares_for_map_west
+    OWNER TO \"jens.astrom\";
+    ")
+
+dbSendStatement(con,
+                "
+GRANT SELECT ON TABLE hule_eiker_insekt.squares_for_map_west TO gisuser;
+")
+
+dbSendStatement(con,
+                "
+GRANT ALL ON TABLE hule_eiker_insekt.squares_for_map_west TO \"jens.astrom\";
+                "
+                )
+
+```
+
+
+Check that this second version contains all info as the first one.
+
+
+```{r}
+#| eval: false
+test_q <- "
+SELECT a.*
+FROM hule_eiker_insekt.squares_for_map a LEFT JOIN
+hule_eiker_insekt.squares_for_map_west b
+ON a.ssbid = b.ssbid
+AND a.omrade = b.omrade
+WHERE b.id IS NOT NULL
+"
+
+test_set <- dbGetQuery(con,
+                       test_q)  %>% 
+  as_tibble()
+
+
+dbGetQuery(con,
+           "SELECT count(*)
+           FROM hule_eiker_insekt.squares_for_map_west")
+
+```
+
+I will also redo a version for the east region with the same (correct) filtering. We have to decide in the future if we should adhere to this or the original (wrong) selection. The error from 2023 was that we filtered like this:
+sel.tree_order_within_square <= 2 
+OR (sel.no_trees_within_square < 2 AND 
+sel.single_and_lonely IS FALSE
+
+When we should have done this:
+sel.tree_order_within_square <= 2 AND
+sel.no_trees_within_square > 1)
+OR (sel.no_trees_within_square < 2 AND 
+sel.single_and_lonely IS FALSE
+
+
+```{r}
+#| eval: false
+dbSendStatement(con,"
+ DROP VIEW IF EXISTS hule_eiker_insekt.squares_for_map_east;
+")
+
+
+dbSendStatement(con,
+                "
+-- DROP VIEW hule_eiker_insekt.squares_for_map_east;
+
+CREATE OR REPLACE VIEW hule_eiker_insekt.squares_for_map_east
+ AS
+ SELECT DISTINCT ON (s.ssbid, foo.matrikkel_no) row_number() OVER (ORDER BY s.ssbid) AS id,
+    foo.\"Områdenavn\" AS omrade,
+    foo.\"RuteID\" AS rute_id,
+    s.ssbid,
+    foo.matrikkel_no,
+    foo.grunneier,
+    foo.grunneier_telefon,
+    foo.kommentar,
+    foo.kommune_navn,
+    foo.fylke_navn,
+    foo.no_trees_within_square,
+    round(st_x(st_transform(st_centroid(s.geom), 4326))::numeric, 6) AS lon_senterpkt,
+    round(st_y(st_transform(st_centroid(s.geom), 4326))::numeric, 6) AS lat_senterpkt,
+    s.geom
+   FROM ( SELECT sel.selection_order,
+            sel.rand_selection_order,
+            sel.rute_id_order,
+            sel.tree_order_within_square,
+            sel.single_and_lonely,
+            sel.no_trees_within_square,
+            sel.\"RuteID\",
+            sel.row_number,
+            sel.\"RuteJA\",
+            sel.\"TreID\",
+            sel.\"Antall\",
+            sel.\"Verdi\",
+            sel.\"Omkrets\",
+            sel.\"Synlig_hul\",
+            sel.\"Hulhet_areal_åpning\",
+            sel.\"Hulhet_Plassering\",
+            sel.\"Vedmuld\",
+            sel.\"Treform\",
+            sel.\"Barktype\",
+            sel.\"Mosedekning\",
+            sel.\"Vitalitet\",
+            sel.\"Kulturspor\",
+            sel.\"Omgivelser\",
+            sel.\"Renskog\",
+            sel.\"Mestskog\",
+            sel.\"Noeskog\",
+            sel.\"PlasseringAR5\",
+            sel.\"Forskrift_gammel\",
+            sel.\"Forskrift\",
+            sel.\"Vern\",
+            sel.\"Gjenvoksing\",
+            sel.\"Gjenvoksing2\",
+            sel.\"Skjøtselsbehov\",
+            sel.\"Kommune\",
+            sel.\"Områdenavn\",
+            sel.\"Nøyaktighetsklasse\",
+            sel.\"Utvalgt.Natur.type\",
+            sel.\"Eikeart\",
+            sel.\"Renskog3\",
+            sel.\"Mestskog4\",
+            sel.\"Noeskog5\",
+            sel.\"Renskog6\",
+            sel.\"Mestskog7\",
+            sel.\"Noeskog8\",
+            sel.\"Gone\",
+            sel.\"Not_found\",
+            sel.\"Ny_vitalitet\",
+            sel.\"Ny_gjenvoksing\",
+            sel.\"Ny_gjenvoksing2\",
+            sel.\"Change_vitalitet\",
+            sel.\"Change_gjenvoksing\",
+            sel.ssbid,
+            sel.nearest_dist,
+            sel.large,
+            sel.sel_prob,
+            sel.rute_id_rand_order,
+            sel.fylke_navn,
+            sel.kommune_navn,
+            sel.kommune_no_2022,
+            sel.geom,
+            sel.geom_25833,
+            sel.east_west,
+            sel.lon_lat_25833,
+            sel.matrikkel_no,
+            sel.grunneier,
+            sel.grunneier_telefon,
+            sel.grunneier_epost,
+            sel.grunneier_adresse,
+            sel.kommentar
+           FROM hule_eiker_insekt.oak_sel_random_order sel
+          WHERE 
+          (sel.tree_order_within_square <= 2 AND
+          sel.no_trees_within_square > 1)
+          OR (sel.no_trees_within_square < 2 AND 
+          sel.single_and_lonely IS FALSE)
+          ) foo
+     LEFT JOIN hule_eiker_insekt.selection_ssb s ON foo.ssbid::bigint = s.ssbid
+     AND foo.east_west = 'east';
+     ")
+
+
+dbSendStatement(con,
+                "
+ALTER TABLE hule_eiker_insekt.squares_for_map_east
+    OWNER TO \"jens.astrom\";
+    ")
+
+dbSendStatement(con,
+                "
+GRANT SELECT ON TABLE hule_eiker_insekt.squares_for_map_east TO gisuser;
+")
+
+dbSendStatement(con,
+                "
+GRANT ALL ON TABLE hule_eiker_insekt.squares_for_map_east TO \"jens.astrom\";
+                "
+                )
+
+```
+
+
+## Correcting an error from 2023
+We noticed a coding error from 2023 on the "single_and_lonely" categorization. The distance to the nearest other oak tree should be > the cut-off distance of 30 000 meters, but was coded as <. This resulted in some oak trees being noted as single_and_lonely and therefore excluded from the candidate set.
+
+Here we check and correct this error.
+
+```{r}
+#| eval: false
+
+check_single_and_lonely_q <- "
+SELECT selection_order,
+no_trees_within_square,
+nearest_dist,
+single_and_lonely,
+(no_trees_within_square < 2 AND
+nearest_dist > 30000)
+as new_single_and_lonely
+FROM hule_eiker_insekt.oak_sel_random_order
+"
+
+check_single_and_lonely <- dbGetQuery(con,
+                                      check_single_and_lonely_q)
+
+
+
+```
+
+```{r}
+#| eval: false
+
+corr_single_and_lonely_q <- "
+UPDATE hule_eiker_insekt.oak_sel_random_order sel
+SET single_and_lonely = foo.new_single_and_lonely
+FROM
+(SELECT selection_order, 
+no_trees_within_square,
+nearest_dist,
+single_and_lonely,
+(no_trees_within_square < 2 AND
+nearest_dist > 30000)
+as new_single_and_lonely
+FROM hule_eiker_insekt.oak_sel_random_order) foo
+WHERE sel.selection_order = foo.selection_order
+
+"
+dbSendQuery(con,
+            corr_single_and_lonely_q)
+
+```
+
