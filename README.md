@@ -4,5 +4,5 @@ This is a collection of mostly R scripts related to the monitoring program of in
 
 The scripts are published "as is", and are not polished or intended to be read by a general audience.
 
-Data that are referred to in the reports, such as lists of localities, are found under season20xx/reportData.
+Data that are referred to in the reports, such as lists of localities, are found under season_YYYY/reportData.
 
